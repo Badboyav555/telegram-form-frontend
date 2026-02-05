@@ -18,7 +18,7 @@ style="width:100%;padding:10px"></textarea><br><br>
 
 <script>
 function send(){
-  fetch("PASTE_WORKER_URL", {
+  fetch("https://telegram-form-worker.badboyav555.workers.dev/", {
     method: "POST",
     headers: {"Content-Type":"application/json"},
     body: JSON.stringify({
