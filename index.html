@@ -1,33 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>Telegram Test Form</title>
-</head>
-<body style="font-family:Arial;background:#111;color:#fff;padding:20px">
+<body>
+  <form id="myForm">
+    <input name="msg" placeholder="Message likh" required />
+    <button type="submit">Send</button>
+  </form>
 
-<h2>Telegram Bot Test Form</h2>
+  <script>
+    document.getElementById("myForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-<input id="name" placeholder="Your Name"
-style="width:100%;padding:10px"><br><br>
+      const msg = e.target.msg.value;
 
-<textarea id="message" placeholder="Type anything..."
-style="width:100%;padding:10px"></textarea><br><br>
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ msg })
+      });
 
-<button onclick="send()">Send</button>
-
-<script>
-function send(){
-  fetch("https://telegram-form-worker.badboyav555.workers.dev/", {
-    method: "POST",
-    headers: {"Content-Type":"application/json"},
-    body: JSON.stringify({
-      name: document.getElementById("name").value,
-      message: document.getElementById("message").value
-    })
-  }).then(() => alert("Sent ✅"));
-}
-</script>
-
+      alert("Sent");
+    });
+  </script>
 </body>
 </html>
