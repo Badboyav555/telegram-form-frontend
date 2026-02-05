@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Telegram Test Form</title>
+</head>
+<body style="font-family:Arial;background:#111;color:#fff;padding:20px">
+
+<h2>Telegram Bot Test Form</h2>
+
+<input id="name" placeholder="Your Name"
+style="width:100%;padding:10px"><br><br>
+
+<textarea id="message" placeholder="Type anything..."
+style="width:100%;padding:10px"></textarea><br><br>
+
+<button onclick="send()">Send</button>
+
+<script>
+function send(){
+  fetch("PASTE_WORKER_URL", {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({
+      name: document.getElementById("name").value,
+      message: document.getElementById("message").value
+    })
+  }).then(() => alert("Sent ✅"));
+}
+</script>
+
+</body>
+</html>
