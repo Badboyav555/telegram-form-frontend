@@ -1,25 +1,24 @@
 <!DOCTYPE html>
 <html>
 <body>
-  <form id="myForm">
-    <input name="msg" placeholder="Message likh" required />
-    <button type="submit">Send</button>
-  </form>
+<h3>Telegram Test</h3>
 
-  <script>
-    document.getElementById("myForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
+<input id="msg" placeholder="Type something">
+<button onclick="send()">Send</button>
 
-      const msg = e.target.msg.value;
+<script>
+function send() {
+  fetch("telegram-form-worker.badboyav555.workers.dev", {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({
+      message: document.getElementById("msg").value
+    })
+  })
+  .then(()=>alert("Sent"))
+  .catch(()=>alert("Error"));
+}
+</script>
 
-      await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ msg })
-      });
-
-      alert("Sent");
-    });
-  </script>
 </body>
 </html>
